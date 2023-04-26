@@ -8,9 +8,11 @@ type Options = {
 	bounds: mb.LngLatBounds;
 	display_name: string;
 	popup: (d: any) => string;
+	starting_zoom: number;
+	starting_center?: mb.LngLat;
 };
 
-const opts: { [name in 'detroit' | 'la']: Options } = {
+export const opts: { [name in 'detroit' | 'la']: Options } = {
 	detroit: {
 		bounds: new mb.LngLatBounds(
 			new mb.LngLat(-83.392191, 42.165329),
@@ -23,7 +25,9 @@ const opts: { [name in 'detroit' | 'la']: Options } = {
     Rating: ${d.rating || ''}
     <br />
     ${d.price || ''}
-    `
+    `,
+		starting_zoom: 14,
+		starting_center: new mb.LngLat(-83.04398567464219, 42.33125764477208)
 	},
 	la: {
 		bounds: new mb.LngLatBounds(new mb.LngLat(-118.651, 33.605), new mb.LngLat(-117.922, 34.383)),
@@ -34,16 +38,18 @@ const opts: { [name in 'detroit' | 'la']: Options } = {
     <a href="${d.website}" rel="noreferrer" target="_blank">
     See more on their website
     </a>
-    `
+    `,
+		starting_zoom: 10
 	}
 };
 
 export function renderMap(city: 'detroit' | 'la') {
 	const map = new mb.Map({
-		container: 'map',
+		container: city,
 		style: 'mapbox://styles/18kimn/clgx6olcc00k901qn204v12oj',
 		maxBounds: opts[city].bounds,
-		center: opts[city].bounds.getCenter()
+		center: opts[city].starting_center || opts[city].bounds.getCenter(),
+		zoom: opts[city].starting_zoom
 	});
 
 	map.on('load', async () => {
@@ -98,7 +104,6 @@ export function renderMap(city: 'detroit' | 'la') {
 			const clusterId = features[0].properties?.cluster_id;
 			(map.getSource(city) as mb.GeoJSONSource).getClusterExpansionZoom(clusterId, (err, zoom) => {
 				if (err) return;
-				console.log(features);
 				map.easeTo({
 					center: features[0].geometry.coordinates,
 					zoom: zoom
@@ -122,8 +127,10 @@ export function renderMap(city: 'detroit' | 'la') {
 		map.on('click', `unclustered-point-${city}`, (e) => {
 			if (!e.features) return;
 			const props = e.features[0].properties;
+
 			if (!props) return;
-			const coords = new mb.LngLat(props.longitude_truncated, props.latitude_truncated);
+			console.log(e);
+			const coords = new mb.LngLat(props.lon_copy, props.lat_copy);
 
 			const t = new mb.Popup().setLngLat(coords).setHTML(opts[city].popup(props)).addTo(map);
 

@@ -6,6 +6,10 @@ get_data <- function(){
     ) |> 
     select(name = display_name, website, description,
            longitude, latitude) |> 
+    mutate(
+      lon_copy = longitude,
+      lat_copy = latitude
+    ) |> 
     drop_na(longitude, latitude)
   
   file.remove("static/la.json")
@@ -14,7 +18,9 @@ get_data <- function(){
   
   detroit <- read_csv("https://github.com/amychiv/yelp_data_scraping/raw/main/restaurant%20csv%20files/Updated%204:20/detroit_restaurants.csv"
                       ) |> 
-    select(-id) |> 
+    select(-id, -latitude_truncated, -longitude_truncated) |> 
+    mutate(lon_copy = longitude,
+           lat_copy = latitude) |> 
     drop_na(longitude, latitude) |> 
     filter(is_black_owned == 1)
   
