@@ -1,0 +1,86 @@
+@import '../node_modules/mapbox-gl/dist/mapbox-gl.css';
+
+:root {
+	font-size: min(max(1.5vh, 12pt), 14pt);
+	transition: font-size ease-in-out 200ms;
+	--title-font: 'alternate-gothic-no-3-d', 'Lato', 'Helvetica', sans-serif;
+	--body-font: 'proxima-nova', 'Lato', 'Helvetica', sans-serif;
+	font-family: var(--body-font);
+	--yellow: #f6e209;
+	--gray: rgba(255, 255, 255, 0.5);
+	--white: #fff;
+	--blue: #003d99;
+}
+
+#app,
+html,
+body,
+main {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	display: grid;
+	grid-column: 1/2;
+	grid-row: 1/2;
+	background: var(--bg);
+}
+
+#app {
+	display: grid;
+}
+
+a {
+	transition: all ease-in-out 0.1s;
+	position: relative;
+}
+
+code,
+pre {
+	font-family: 'Fira Code', mono;
+	background: #e3eaf2;
+}
+
+pre {
+	padding: 0.5rem 1rem;
+}
+
+button {
+	font-family: var(--body-font);
+	font-size: 1rem;
+	margin: 0rem;
+	border: var(--border);
+	cursor: pointer;
+	text-decoration: none;
+	transition: all ease-in-out 200ms;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin: 0;
+	font-weight: normal;
+}
+
+h1 {
+	font-size: 3.5rem;
+}
+
+h2 {
+	font-size: 2rem;
+}
+
+h3 {
+	font-size: 2rem;
+}
+
+p {
+	font-size: 1rem;
+}
+
+* {
+	box-sizing: border-box;
+}
