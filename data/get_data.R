@@ -8,16 +8,19 @@ get_data <- function(){
            longitude, latitude) |> 
     drop_na(longitude, latitude)
   
+  file.remove("static/la.json")
   st_as_sf(la, coords = c("longitude", "latitude")) |> 
     st_write(driver = "GeoJSON", "static/la.json") 
   
-  detroit <- read_csv("https://github.com/amychiv/yelp_data_scraping/raw/main/restaurant%20csv%20files/detroit_restaurants.csv"
+  detroit <- read_csv("https://github.com/amychiv/yelp_data_scraping/raw/main/restaurant%20csv%20files/Updated%204:20/detroit_restaurants.csv"
                       ) |> 
     select(-id) |> 
-    drop_na(longitude, latitude)
+    drop_na(longitude, latitude) |> 
+    filter(is_black_owned == 1)
   
+  file.remove("static/detroit.json")
   st_as_sf(detroit, coords = c("longitude", "latitude")) |> 
-    st_write(driver ="GeoJSON", "static/detroit.json")
+    st_write(driver ="GeoJSON", "static/detroit.json", append = FALSE)
 }
 
 get_data()
