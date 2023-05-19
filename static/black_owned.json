@@ -1,6 +1,6 @@
 {
 "type": "FeatureCollection",
-"name": "detroit",
+"name": "black_owned",
 "features": [
 { "type": "Feature", "properties": { "name": "Jacoby's German Biergarten", "review_count": 285.0, "rating": 4.0, "price": "$$", "zip_code": "48226", "is_black_owned": 1.0, "lon_copy": -83.04208, "lat_copy": 42.33229 }, "geometry": { "type": "Point", "coordinates": [ -83.04208, 42.33229 ] } },
 { "type": "Feature", "properties": { "name": "Sweetwater Tavern", "review_count": 584.0, "rating": 3.5, "price": "$$", "zip_code": "48226", "is_black_owned": 1.0, "lon_copy": -83.041633605957003, "lat_copy": 42.331668853759801 }, "geometry": { "type": "Point", "coordinates": [ -83.041633605957003, 42.331668853759801 ] } },
