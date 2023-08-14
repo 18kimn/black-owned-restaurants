@@ -86,7 +86,7 @@ get_googlemap <- function(){
             data_subset <- results_filtered |> 
               filter(city == city_name, black_owned == is_black_owned)
             message(nrow(data_subset))
-            filename <- paste0("static/", tolower(city), ifelse(is_black_owned, "_non", ""),
+            filename <- paste0("static/", tolower(city_name), ifelse(is_black_owned, "", "_non"),
                                "_black_owned.json")
             file.remove(filename)
             st_write(data_subset, filename, driver = "GeoJSON")

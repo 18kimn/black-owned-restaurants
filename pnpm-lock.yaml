@@ -4,6 +4,7 @@ specifiers:
   '@sveltejs/adapter-auto': ^2.0.0
   '@sveltejs/adapter-static': ^2.0.2
   '@sveltejs/kit': ^1.5.0
+  '@types/geojson': ^7946.0.10
   '@types/mapbox-gl': ^2.7.10
   '@typescript-eslint/eslint-plugin': ^5.45.0
   '@typescript-eslint/parser': ^5.45.0
@@ -23,6 +24,7 @@ specifiers:
 
 dependencies:
   '@sveltejs/adapter-static': 2.0.2_@sveltejs+kit@1.15.8
+  '@types/geojson': 7946.0.10
   '@types/mapbox-gl': 2.7.10
   leaflet: 1.9.3
   leaflet.markercluster: 1.5.3_leaflet@1.9.3
