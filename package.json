@@ -2,6 +2,7 @@
 	"name": "matt-map",
 	"version": "0.0.1",
 	"private": true,
+	"packageManager": "pnpm@7.29.3",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
