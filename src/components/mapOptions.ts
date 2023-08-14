@@ -15,6 +15,7 @@ export type Options = {
 			popup: (d: any) => string;
 			starting_zoom: number;
 			starting_center?: mb.LngLat;
+			path_prefix?: string;
 		};
 	};
 };
